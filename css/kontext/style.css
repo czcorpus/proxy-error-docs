@@ -1,5 +1,4 @@
 body {
-    background-image: url("img/groovepaper2.jpg");
     color: #010101;
     font-family: "Roboto","Segoe UI",Arial,sans-serif;
     font-size: 10pt;
@@ -80,8 +79,8 @@ header .navig-wrapper {
 
 #content > section.exclusive {
     display: block;
-    margin-left: 20%;
-    margin-right: 20%;
+    max-width: 30em;
+    margin: 0 auto;
     padding-bottom: 20px;
 }
 
@@ -101,6 +100,15 @@ section.exclusive h2 {
 
 div.messages p {
     font-size: 1.3em;
+    margin-top: 0.4em;
+}
+
+div.messages p.message {
+    color: #E2007A;
+}
+
+div.messages p.note {
+    font-family: "Roboto Condensed", "Segoe UI", sans-serif;
 }
 
 section h2 {
@@ -118,8 +126,12 @@ section > * {
     height: 3em;
 }
 
-em.lang {
-    color: #aaaaaa; padding-right: 0.4em
+h3.lang {
+    margin: 0;
+    font-style: italic;
+    font-size: 150%;
+    color: #009EE0;
+    padding-right: 0.4em
 }
 
 section.exclusive h2 {

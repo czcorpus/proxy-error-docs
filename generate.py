@@ -30,6 +30,7 @@ class Generator(object):
     def __init__(self, ident, conf):
         self._ident = ident
         self._pages = conf['pages']
+        self._web_root = conf['web_root']
         self._root_path = os.path.dirname(__file__)
 
     def process(self, out_dir):
@@ -61,11 +62,12 @@ class Generator(object):
             loader=FileSystemLoader(os.path.realpath(os.path.join(os.path.dirname(__file__),
                                                                   'templates/%s' % self._ident))))
         tpl = env.get_template(template)
-        tpl_data = dict(css=self._load_css())
+        tpl_data = dict(css=self._load_css(), web_root=self._web_root)
         tpl_data.update(data)
         with codecs.open(os.path.join(target, template), 'wb', 'utf-8') as fw:
             fw.write(tpl.render(**tpl_data))
         self._copy_images(target)
+        print('Generated template {0}'.format(template))
 
 
 if __name__ == '__main__':

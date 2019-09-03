@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block contents %}
+<h2>:-(</h2>
+<div class="messages">
+    {% block msg_en %}
+    <p class="message"><em class="lang">[en]</em> Page not found.</p>
+    {% endblock %}
+    {% block msg_cs %}
+    <p class="message"><em class="lang">[cs]</em> Stránka nebyla nalezena.</p>
+    {% endblock %}
+</div>
+{% endblock %}

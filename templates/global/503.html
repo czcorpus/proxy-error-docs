@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block contents %}
+<h2>:-(</h2>
+<div class="messages">
+    <h3 class="lang">[en]</h3>
+    {% block msg_en %}
+    <p class="message">The server is temporarily unreachable. Please wait a few seconds and reload the page.</p>
+    {% endblock %}
+    <h3 class="lang">[cs]</h3>
+    {% block custom_msg_cs %}{% endblock %}
+</div>
+{% endblock %}

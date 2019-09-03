@@ -1,9 +1,10 @@
-{% extends "layout.html" %}
+{% extends "../global/404.html" %}
 
-{% block contents %}
-<h2>:-(</h2>
-<div class="messages">
-    <p class="message"><em class="lang">[en]</em> Page not found.</p>
-    <p class="message"><em class="lang">[cs]</em> Stránka nebyla nalezena.</p>
-</div>
+
+{% block logo %}
+<a id="logo-wrapper" href="{{ app_url }}"><img alt="Kontext logo" src="{{ web_root }}img/kontext-logo.svg" class="over-img" id="logo-image"></a>
 {% endblock %}
+
+{% block custom_msg_en %}{% endblock %}
+
+{% block custom_msg_cs %}{% endblock %}

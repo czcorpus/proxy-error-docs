@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block contents %}
+<h2>:-(</h2>
+<div class="messages">
+    <h3 class="lang">[en]</h3>
+    {% block msg_en %}
+    <p class="message">Failed to get a response from KonText server in a defined time limit.</p>
+    <p class="note">In case you query a large corpus (billions of tokens), please try to create a suitable subcorpus first.
+        In case KonText cannot analyze your current concordance (e.g. via &quot;frequency distribution&quot;), please consider
+        reducing the concordance by using the &quot;random sample&quot; function.</p>
+    {% endblock %}
+
+    <h3 class="lang">[cs]</h3>
+    {% block msg_cs %}
+    <p class="message">Nepodařilo se získat odpověď od serveru KonTextu v definvaném časovém limitu.</p>
+    <p class="note">V případě dotazování do velkého korpusu (miliardy pozic) zvažte vytvoření vhodného subkorpusu. Pokud
+    KonText nezvládá analyzovat vaši existující konkordanci (např. funkcí &quot;frekvenční distribuce&quot;),
+    zkuste omezit velikost konkordance funkcí &quot;náhodný vzorek&quot;.</p>
+    {% endblock %}
+</div>
+{% endblock %}

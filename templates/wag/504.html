@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block header %}
+<div id="logo-area">
+    <a id="logo-wrapper" href="{{ app_url }}"><img alt="WaG logo" src="{{ web_root }}img/logo_en.svg" class="over-img" id="logo-image"></a>
+</div>
+{% endblock %}
+
+{% block contents %}
+<h2>:-(</h2>
+<div class="messages">
+    <h3 class="lang">[en]</h3>
+    <p class="message">Failed to get a response from WaG server in a defined time limit.</p>
+    <p class="note">Please wait a minute and try again.</p>
+
+    <h3 class="lang">[cs]</h3>
+    <p class="message">Nepodařilo se získat odpověď od serveru KonTextu v definvaném časovém limitu.</p>
+    <p class="note">Počkejte prosím minutu a zkuste svoji akci zopakovat.</p>
+</div>
+{% endblock %}

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # Copyright (c) 2016 Charles University in Prague, Faculty of Arts,
 #                    Institute of the Czech National Corpus
 # Copyright (c) 2016 Tomas Machalek <tomas.machalek@gmail.com>
@@ -21,7 +21,7 @@ import os
 import re
 import codecs
 import shutil
-
+import argparse
 from jinja2 import Environment, FileSystemLoader
 
 
@@ -48,8 +48,11 @@ class Generator(object):
 
     def _load_css(self):
         ans = []
+        common_path = os.path.join(self._root_path, 'css', 'common.css')
+        with open(common_path, 'r') as fr:
+            ans.append(re.sub(r'\s+', ' ', fr.read()))
         for css in self._list_subdir('css'):
-            with open(css, 'rb') as fr:
+            with open(css, 'r') as fr:
                 ans.append(re.sub(r'\s+', ' ', fr.read()))
         return '\n'.join(ans)
 
@@ -60,22 +63,30 @@ class Generator(object):
     def _generate_page(self, template, data, target):
         env = Environment(
             loader=FileSystemLoader(os.path.realpath(os.path.join(os.path.dirname(__file__),
-                                                                  'templates/%s' % self._ident))))
-        tpl = env.get_template(template)
+                                                                  'templates'))))
+        tpl = env.get_template(self._ident + '/' + template)
         tpl_data = dict(css=self._load_css(), web_root=self._web_root)
         tpl_data.update(data)
         with codecs.open(os.path.join(target, template), 'wb', 'utf-8') as fw:
             fw.write(tpl.render(**tpl_data))
         self._copy_images(target)
-        print('Generated template {0}'.format(template))
+        print(f'Generated template {self._ident}/{template}')
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print('\nERROR: invalid arguments (use: python generate.py APP_ID)\n')
-        sys.exit(1)
-    app = sys.argv[1]
-    with open(os.path.join(os.path.dirname(__file__), 'conf.json'), 'rb') as fr:
+    argparser = argparse.ArgumentParser(description='CNC static error page generator')
+    argparser.add_argument('config_file', metavar='CONF',
+                           help='a configuration for apps we want to support')
+    argparser.add_argument('-a', '--app', type=str,
+                           help='generate pages only for a specified page (otherwise everything in the config will be processed)')
+    args = argparser.parse_args()
+    with open(os.path.join(os.path.dirname(__file__), args.config_file), 'r') as fr:
         conf = json.load(fr)
-    gen = Generator(app, conf[app])
-    gen.process(out_dir=os.path.join(os.path.dirname(__file__), 'dist', app))
+    if args.app:
+        gen = Generator(args.app, conf[args.app])
+        gen.process(out_dir=os.path.join(os.path.dirname(__file__), 'dist', args.app))
+    else:
+        print(conf.keys())
+        for app in conf.keys():
+            gen = Generator(app, conf[app])
+            gen.process(out_dir=os.path.join(os.path.dirname(__file__), 'dist', app))

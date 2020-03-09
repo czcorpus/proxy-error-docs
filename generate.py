@@ -86,7 +86,6 @@ if __name__ == '__main__':
         gen = Generator(args.app, conf[args.app])
         gen.process(out_dir=os.path.join(os.path.dirname(__file__), 'dist', args.app))
     else:
-        print(conf.keys())
         for app in conf.keys():
             gen = Generator(app, conf[app])
             gen.process(out_dir=os.path.join(os.path.dirname(__file__), 'dist', app))

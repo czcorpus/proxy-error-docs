@@ -16,5 +16,23 @@
         "app_url": "https://kontext.korpus.cz/"
       }
     }
+  },
+  "wag": {
+    "web_root": "https://www.korpus.cz/proxy-error/wag/",
+    "pages": {
+      "503.html": {
+        "msg_type": "Error 503",
+        "app_url": "https://www.korpus.cz/slovo-v-kostce/"
+
+      },
+      "504.html": {
+        "msg_type": "Error 504",
+        "app_url": "https://www.korpus.cz/slovo-v-kostce/"
+      },
+      "404.html": {
+        "msg_type": "Error 404",
+        "app_url": "https://www.korpus.cz/slovo-v-kostce/"
+      }
+    }
   }
 }

@@ -17,12 +17,8 @@
     </div>
 </div>
 <header id="topbar">
-    <div class="navig-wrapper">
-        <div id="menu-bar">
-            <a id="logo-wrapper" href="{{ app_url }}"><img alt="Kontext logo" src="{{ web_root }}img/kontext-logo.svg" class="over-img" id="logo-image"></a>
-            <div id="main-menu-mount"></div>
-        </div>
-    </div>
+    {% block header %}
+    {% endblock %}
 </header>
 <div id="content">
     <section class="exclusive">

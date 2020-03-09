@@ -1,11 +1,22 @@
 {% extends "layout.html" %}
 
+{% block header %}
+<div class="navig-wrapper">
+    <div id="menu-bar">
+        <a id="logo-wrapper" href="{{ app_url }}"><img alt="Kontext logo" src="{{ web_root }}img/kontext-logo.svg" class="over-img" id="logo-image"></a>
+        <div id="main-menu-mount"></div>
+    </div>
+</div>
+{% endblock %}
+
 {% block contents %}
 <h2>:-(</h2>
 <div class="messages">
     <h3 class="lang">[en]</h3>
-    <p class="message">KonText server is temporarily unreachable. Please wait a few seconds and reload the page.</p>
+    <p class="message">KonText server is temporarily unreachable.</p>
+    <p class="note">Please wait a minute and reload the page.</p>
     <h3 class="lang">[cs]</h3>
-    <p class="message">Server KonText je dočasně nedostupný. Počkejte prosím několik vteřin a načtěte znovu stránku.</p>
+    <p class="message">Server KonText je dočasně nedostupný.</p>
+    <p class="note">Počkejte prosím minutu a načtěte znovu stránku.</p>
 </div>
 {% endblock %}

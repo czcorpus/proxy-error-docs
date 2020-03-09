@@ -1,0 +1,17 @@
+#logo-area {
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+section.exclusive h2 {
+    font-size: 2em;
+    font-weight: bold;
+    background-color: #009ee0;
+    color: #ffffff;
+
+}
+
+#content > section {
+    background-color: #ffffff;
+}

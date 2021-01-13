@@ -27,8 +27,9 @@ from jinja2 import Environment, FileSystemLoader
 
 class Generator(object):
 
-    def __init__(self, ident, conf):
-        self._ident = ident
+    def __init__(self, conf):
+        self._ident = conf['ident']
+        self._template = conf['template']
         self._pages = conf['pages']
         self._web_root = conf['web_root']
         self._root_path = os.path.dirname(__file__)
@@ -43,7 +44,7 @@ class Generator(object):
             self._generate_page(page, data, out_dir)
 
     def _list_subdir(self, subdir_name):
-        path = os.path.join(self._root_path, subdir_name, self._ident)
+        path = os.path.join(self._root_path, subdir_name, self._template)
         return [os.path.join(path, item) for item in os.listdir(path)]
 
     def _load_css(self):
@@ -64,14 +65,20 @@ class Generator(object):
         env = Environment(
             loader=FileSystemLoader(os.path.realpath(os.path.join(os.path.dirname(__file__),
                                                                   'templates'))))
-        tpl = env.get_template(self._ident + '/' + template)
+        tpl = env.get_template(self._template + '/' + template)
         tpl_data = dict(css=self._load_css(), web_root=self._web_root)
         tpl_data.update(data)
         with codecs.open(os.path.join(target, template), 'wb', 'utf-8') as fw:
             fw.write(tpl.render(**tpl_data))
         self._copy_images(target)
-        print(f'Generated template {self._ident}/{template}')
+        print(f'Generated template {self._template}/{template}')
 
+
+def find_app(conf, app):
+    for item in conf:
+        if item['ident'] == app:
+            return item
+    raise Exception(f'application {app} not found')
 
 if __name__ == '__main__':
     argparser = argparse.ArgumentParser(description='CNC static error page generator')
@@ -83,9 +90,9 @@ if __name__ == '__main__':
     with open(os.path.join(os.path.dirname(__file__), args.config_file), 'r') as fr:
         conf = json.load(fr)
     if args.app:
-        gen = Generator(args.app, conf[args.app])
+        gen = Generator(find_app(conf, args.app))
         gen.process(out_dir=os.path.join(os.path.dirname(__file__), 'dist', args.app))
     else:
-        for app in conf.keys():
-            gen = Generator(app, conf[app])
-            gen.process(out_dir=os.path.join(os.path.dirname(__file__), 'dist', app))
+        for app_conf in conf:
+            gen = Generator(app_conf)
+            gen.process(out_dir=os.path.join(os.path.dirname(__file__), 'dist', app_conf['ident']))

@@ -1,5 +1,7 @@
-{
-  "kontext": {
+[
+  {
+    "ident": "kontext1",
+    "template": "kontext",
     "web_root": "https://kontext.korpus.cz/proxy/",
     "pages": {
       "503.html": {
@@ -17,7 +19,9 @@
       }
     }
   },
-  "wag": {
+  {
+    "ident": "wag1",
+    "template": "wag",
     "web_root": "https://www.korpus.cz/proxy-error/wag/",
     "pages": {
       "503.html": {
@@ -35,4 +39,4 @@
       }
     }
   }
-}
+]

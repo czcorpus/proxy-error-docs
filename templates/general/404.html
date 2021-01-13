@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block header %}
+<div class="navig-wrapper">
+    <div id="menu-bar">
+        <a id="logo-wrapper" href="{{ app_url }}"><img alt="CNK logo" src="{{ web_root }}img/logo_cnk.png" class="over-img" id="logo-image"></a>
+        <div id="main-menu-mount"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block contents %}
+<h2>:-(</h2>
+<div class="messages">
+    <p class="message"><em class="lang">[en]</em> Page not found.</p>
+    <p class="message"><em class="lang">[cs]</em> Stránka nebyla nalezena.</p>
+</div>
+{% endblock %}

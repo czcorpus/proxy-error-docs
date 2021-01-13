@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block header %}
+<div class="navig-wrapper">
+    <div id="menu-bar">
+        <a id="logo-wrapper" href="{{ app_url }}"><img alt="CNK logo" src="{{ web_root }}img/logo_cnk.png" class="over-img" id="logo-image"></a>
+        <div id="main-menu-mount"></div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block contents %}
+<h2>:-(</h2>
+<div class="messages">
+    <h3 class="lang">[en]</h3>
+    <p class="message">Failed to get a response from the application in a defined time limit.</p>
+
+    <h3 class="lang">[cs]</h3>
+    <p class="message">Nepodařilo se získat odpověď od aplikačního serveru v definovaném časovém limitu.</p>
+</div>
+{% endblock %}
